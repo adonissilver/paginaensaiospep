@@ -14,9 +14,10 @@ export const Route = createFileRoute("/")({
 });
 
 const VIDEOS = [
-  "https://cdn.coverr.co/videos/coverr-scientist-working-in-the-laboratory-4666/1080p.mp4",
-  "https://cdn.coverr.co/videos/coverr-a-scientist-pipetting-a-sample-1572/1080p.mp4",
-  "https://cdn.coverr.co/videos/coverr-microscope-in-a-lab-7470/1080p.mp4",
+  "https://assets.mixkit.co/videos/4645/4645-720.mp4",
+  "https://assets.mixkit.co/videos/39764/39764-720.mp4",
+  "https://assets.mixkit.co/videos/4736/4736-720.mp4",
+  "https://assets.mixkit.co/videos/27607/27607-720.mp4",
 ];
 
 const PROGRAMS = [
@@ -32,7 +33,7 @@ function Page() {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setActive((i) => (i + 1) % VIDEOS.length), 7000);
+    const id = setInterval(() => setActive((i) => (i + 1) % VIDEOS.length), 6500);
     return () => clearInterval(id);
   }, []);
 
@@ -50,8 +51,8 @@ function Page() {
 
 function Hero({ active }: { active: number }) {
   return (
-    <header className="relative isolate min-h-screen w-full overflow-hidden">
-      {/* Video background sequence */}
+    <header className="relative isolate min-h-screen w-full overflow-hidden bg-[var(--color-deep)]">
+      {/* Video background sequence with smooth crossfade */}
       <div className="absolute inset-0 -z-10">
         {VIDEOS.map((src, i) => (
           <video
@@ -61,25 +62,29 @@ function Hero({ active }: { active: number }) {
             muted
             loop
             playsInline
-            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in-out"
-            style={{ opacity: i === active ? 1 : 0 }}
+            preload="auto"
+            className="absolute inset-0 h-full w-full object-cover will-change-[opacity,transform]"
+            style={{
+              opacity: i === active ? 1 : 0,
+              transform: i === active ? "scale(1.04)" : "scale(1)",
+              transition: "opacity 2200ms cubic-bezier(0.45, 0, 0.2, 1), transform 7500ms ease-out",
+            }}
           />
         ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.05_220/0.85)] via-[oklch(0.22_0.06_215/0.65)] to-[oklch(0.15_0.04_220/0.92)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.05_220/0.82)] via-[oklch(0.22_0.06_215/0.55)] to-[oklch(0.15_0.04_220/0.95)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,oklch(0.4_0.13_195/0.35),transparent_60%)]" />
         <div className="absolute inset-0 grain opacity-40 mix-blend-overlay" />
       </div>
 
       {/* Top bar */}
       <div className="relative z-10 flex items-center justify-between px-6 py-6 md:px-12">
-        <div className="flex items-center gap-3">
-          <div className="glass rounded-xl px-4 py-2.5 ring-1 ring-white/15">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sabesp_logo.svg/512px-Sabesp_logo.svg.png"
-              alt="Sabesp"
-              className="h-7 w-auto md:h-8"
-            />
-          </div>
-        </div>
+        <a href="#" className="flex items-center gap-3">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sabesp_logo.svg/512px-Sabesp_logo.svg.png"
+            alt="Sabesp"
+            className="h-9 w-auto brightness-0 invert drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] md:h-11"
+          />
+        </a>
 
         <nav className="hidden items-center gap-8 text-sm font-medium text-white/85 md:flex">
           <a href="#programas" className="hover:text-white">Programas</a>
