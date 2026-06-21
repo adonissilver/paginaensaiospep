@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import sabespLogo from "@/assets/sabesp-novo-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -13,19 +14,20 @@ export const Route = createFileRoute("/")({
   component: Page,
 });
 
+// Pexels stock videos — laboratory / water analysis / microbiology
 const VIDEOS = [
-  "https://assets.mixkit.co/videos/4645/4645-720.mp4",
-  "https://assets.mixkit.co/videos/39764/39764-720.mp4",
-  "https://assets.mixkit.co/videos/4736/4736-720.mp4",
-  "https://assets.mixkit.co/videos/27607/27607-720.mp4",
+  "https://videos.pexels.com/video-files/3195394/3195394-hd_1920_1080_25fps.mp4", // liquid sampling lab
+  "https://videos.pexels.com/video-files/3195727/3195727-hd_1920_1080_25fps.mp4", // microscope observation
+  "https://videos.pexels.com/video-files/4121322/4121322-hd_1920_1080_25fps.mp4", // scientist working in lab
 ];
 
+// Unsplash — all laboratory analysis imagery (microscopy, pipetting, petri dishes, water samples)
 const PROGRAMS = [
-  { tag: "Amostragem", title: "PEP de Amostragem", region: "Rio Grande do Sul", date: "16 Mar 2026", img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=1200&q=80" },
-  { tag: "Ambiental", title: "Análises Ambientais", region: "Programa Nacional", date: "30 Mar 2026", img: "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?auto=format&fit=crop&w=1200&q=80" },
-  { tag: "Óleos & Graxas", title: "Óleos e Graxas", region: "Programa Nacional", date: "20 Abr 2026", img: "https://images.unsplash.com/photo-1554475901-4538ddfbccc2?auto=format&fit=crop&w=1200&q=80" },
-  { tag: "Sólidos", title: "Série Sólidos", region: "Águas residuárias", date: "20 Abr 2026", img: "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1200&q=80" },
-  { tag: "Sementes", title: "Análise de Sementes", region: "Programa Nacional", date: "12 Mai 2026", img: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=1200&q=80" },
+  { tag: "Amostragem", title: "PEP de Amostragem", region: "Programa Nacional", date: "16 Mar 2026", img: "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1200&q=80" },
+  { tag: "Ambiental", title: "Análises Ambientais", region: "Programa Nacional", date: "30 Mar 2026", img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80" },
+  { tag: "Óleos & Graxas", title: "Óleos e Graxas", region: "Programa Nacional", date: "20 Abr 2026", img: "https://images.unsplash.com/photo-1614308457932-e16d85c5d057?auto=format&fit=crop&w=1200&q=80" },
+  { tag: "Sólidos", title: "Série Sólidos", region: "Águas residuárias", date: "20 Abr 2026", img: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=1200&q=80" },
+  { tag: "Físico-Química", title: "Águas para Consumo", region: "Programa Nacional", date: "12 Mai 2026", img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=1200&q=80" },
   { tag: "Microbiologia", title: "Microbiologia da Água", region: "Programa Nacional", date: "08 Jun 2026", img: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80" },
 ];
 
@@ -80,9 +82,9 @@ function Hero({ active }: { active: number }) {
       <div className="relative z-10 flex items-center justify-between px-6 py-6 md:px-12">
         <a href="#" className="flex items-center gap-3">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sabesp_logo.svg/512px-Sabesp_logo.svg.png"
+            src={sabespLogo.url}
             alt="Sabesp"
-            className="h-9 w-auto brightness-0 invert drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] md:h-11"
+            className="h-10 w-auto drop-shadow-[0_2px_14px_rgba(0,0,0,0.5)] md:h-12"
           />
         </a>
 
@@ -307,9 +309,9 @@ function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 md:flex-row md:items-center md:px-12">
         <div className="flex items-center gap-4">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Sabesp_logo.svg/512px-Sabesp_logo.svg.png"
+            src={sabespLogo.url}
             alt="Sabesp"
-            className="h-8 w-auto brightness-0 invert"
+            className="h-9 w-auto"
           />
           <span className="text-sm">Centro de Tecnologia de Saneamento Básico</span>
         </div>
